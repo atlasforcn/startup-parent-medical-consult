@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>24小時全方位親子即時醫療專業線上諮詢 Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <nav class="source-bar" aria-label="來源資訊">
+      <span>創業歸故里驗證輔導計畫 · 數位發展部數位產業署 · 114 年創業驗證組成果評選</span>
+      <a href="https://sccontest.tca.org.tw/content/display#sectionA" target="_blank" rel="noopener">官方來源</a>
+    </nav>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">桃園市 · 伊合醫合 · 導入級</p>
+        <h1 id="page-title">24小時全方位親子即時醫療專業線上諮詢</h1>
+        <p class="hero-text">半夜孩子發燒、咳嗽或腹痛時，先把症狀整理成可判讀的照護資訊，再接上護理師、兒科醫師或急診轉介建議。</p>
+        <div class="hero-actions" aria-label="主要操作">
+          <a class="button button-primary" href="#triage">開始分流</a>
+          <button class="button button-secondary" type="button" id="demoScenarioButton">套用夜間發燒情境</button>
+        </div>
+      </div>
+
+      <div class="night-card" aria-label="夜間兒科諮詢情境圖">
+        <svg viewBox="0 0 560 360" role="img" aria-labelledby="scene-title scene-desc">
+          <title id="scene-title">夜間家庭照護與線上醫療諮詢</title>
+          <desc id="scene-desc">家長在夜晚透過手機與值班醫護連線，旁邊顯示孩子症狀與風險分流。</desc>
+          <defs>
+            <linearGradient id="windowGlow" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#f7dba4"/>
+              <stop offset="100%" stop-color="#9fd8d0"/>
+            </linearGradient>
+            <linearGradient id="phoneGlow" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#fef8ed"/>
+              <stop offset="100%" stop-color="#d9f0eb"/>
+            </linearGradient>
+          </defs>
+          <rect width="560" height="360" rx="28" fill="#17314a"/>
+          <circle cx="480" cy="58" r="28" fill="#f7dba4"/>
+          <path d="M96 86h176a24 24 0 0 1 24 24v160H72V110a24 24 0 0 1 24-24Z" fill="#244a64"/>
+          <rect x="106" y="118" width="70" height="70" rx="14" fill="url(#windowGlow)" opacity=".92"/>
+          <rect x="192" y="118" width="70" height="70" rx="14" fill="#345f77"/>
+          <path d="M102 260h210v34H102z" fill="#9ccbc4"/>
+          <path d="M122 224c22-22 76-24 110 0 18 13 50 11 74-4v60H122z" fill="#f3d6bb"/>
+          <path d="M126 232c18-13 45-14 64-2 10 6 28 6 40-3 5 14 0 31-13 41H126z" fill="#fbf2e6"/>
+          <rect x="348" y="82" width="122" height="216" rx="24" fill="#0e253b" stroke="#9fd8d0" stroke-width="4"/>
+          <rect x="362" y="104" width="94" height="156" rx="16" fill="url(#phoneGlow)"/>
+          <circle cx="409" cy="281" r="7" fill="#9fd8d0"/>
+          <path d="M374 145h70M374 172h46M374 207h58" stroke="#245064" stroke-width="9" stroke-linecap="round"/>
+          <path d="M374 232c18-29 36 20 54-8 7-12 13-18 21-14" fill="none" stroke="#df7b6d" stroke-width="8" stroke-linecap="round"/>
+          <circle cx="342" cy="132" r="24" fill="#fef8ed"/>
+          <path d="M333 132h18M342 123v18" stroke="#df7b6d" stroke-width="6" stroke-linecap="round"/>
+          <path d="M62 306h438" stroke="#527a8f" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="status-strip" aria-label="服務狀態">
+      <article>
+        <span class="status-label">值班狀態</span>
+        <strong>24 小時線上</strong>
+      </article>
+      <article>
+        <span class="status-label">目前時間</span>
+        <strong id="currentTime">--:--</strong>
+      </article>
+      <article>
+        <span class="status-label">候診序位</span>
+        <strong id="queuePosition">第 3 位</strong>
+      </article>
+      <article>
+        <span class="status-label">建議接觸</span>
+        <strong id="recommendedRole">兒科護理師</strong>
+      </article>
+    </section>
+
+    <section class="workspace" id="triage">
+      <div class="panel triage-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Step 1</p>
+          <h2>親子症狀分流</h2>
+        </div>
+
+        <form id="triageForm">
+          <label class="field">
+            <span>孩子年齡</span>
+            <select id="ageGroup" name="ageGroup">
+              <option value="infant">未滿 1 歲</option>
+              <option value="toddler" selected>1 至 5 歲</option>
+              <option value="school">6 至 12 歲</option>
+              <option value="teen">13 歲以上</option>
+            </select>
+          </label>
+
+          <fieldset class="symptom-grid">
+            <legend>主要症狀</legend>
+            <label><input type="checkbox" name="symptom" value="fever" checked> 發燒</label>
+            <label><input type="checkbox" name="symptom" value="cough"> 咳嗽/喘</label>
+            <label><input type="checkbox" name="symptom" value="rash"> 皮疹</label>
+            <label><input type="checkbox" name="symptom" value="vomit"> 嘔吐/腹瀉</label>
+            <label><input type="checkbox" name="symptom" value="pain"> 腹痛/耳痛</label>
+            <label><input type="checkbox" name="symptom" value="injury"> 跌倒/外傷</label>
+          </fieldset>
+
+          <div class="dual-fields">
+            <label class="field">
+              <span>目前體溫</span>
+              <input id="temperature" name="temperature" type="number" min="35" max="42" step="0.1" value="38.6">
+            </label>
+            <label class="field">
+              <span>症狀持續</span>
+              <select id="duration" name="duration">
+                <option value="short">6 小時內</option>
+                <option value="day" selected>6 至 24 小時</option>
+                <option value="long">超過 24 小時</option>
+              </select>
+            </label>
+          </div>
+
+          <fieldset class="warning-list">
+            <legend>警示徵象</legend>
+            <label><input type="checkbox" name="warning" value="breathing"> 呼吸費力或嘴唇發紫</label>
+            <label><input type="checkbox" name="warning" value="dehydration"> 8 小時未尿或明顯脫水</label>
+            <label><input type="checkbox" name="warning" value="lethargy"> 嗜睡、叫不醒或抽搐</label>
+            <label><input type="checkbox" name="warning" value="youngFever"> 未滿 3 個月且發燒</label>
+          </fieldset>
+
+          <div class="form-actions">
+            <button class="button button-primary" type="submit">更新分流</button>
+            <button class="button button-quiet" type="button" id="resetButton">清除重填</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="panel risk-panel" aria-live="polite">
+        <div class="section-heading">
+          <p class="eyebrow">Step 2</p>
+          <h2>風險升級與轉診建議</h2>
+        </div>
+        <div class="risk-meter" id="riskMeter">
+          <span id="riskLevel">中度風險</span>
+        </div>
+        <p id="riskSummary">建議先由兒科護理師接通，確認退燒、補水與呼吸狀態，再視情況安排醫師。</p>
+        <div class="referral-card">
+          <span class="status-label">下一步</span>
+          <strong id="nextStep">10 分鐘內護理師回覆，30 分鐘內醫師評估。</strong>
+        </div>
+        <button class="button button-secondary" type="button" id="createReferralButton">建立急診摘要</button>
+        <p class="microcopy" id="referralNote">摘要會整理體溫、症狀、警示徵象與已安排的線上諮詢事件。</p>
+      </div>
+    </section>
+
+    <section class="care-grid" aria-label="線上諮詢與照護進度">
+      <div class="panel queue-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Step 3</p>
+          <h2>24 小時醫師/護理師候診</h2>
+        </div>
+        <div class="queue-card primary-provider">
+          <div>
+            <span class="provider-role" id="primaryRole">兒科護理師</span>
+            <strong id="primaryName">林護理師</strong>
+          </div>
+          <span class="wait-time" id="primaryWait">約 10 分鐘</span>
+        </div>
+        <div class="provider-list" id="providerList"></div>
+      </div>
+
+      <div class="panel event-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Step 4</p>
+          <h2>線上諮詢事件</h2>
+        </div>
+        <div class="event-actions">
+          <button class="icon-button" type="button" data-event="connect" aria-label="新增接通事件">接通</button>
+          <button class="icon-button" type="button" data-event="photo" aria-label="新增照片事件">照片</button>
+          <button class="icon-button" type="button" data-event="note" aria-label="新增醫囑事件">醫囑</button>
+          <button class="icon-button" type="button" data-event="close" aria-label="新增結案事件">結案</button>
+        </div>
+        <ol class="timeline" id="eventTimeline"></ol>
+      </div>
+
+      <div class="panel reminder-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Step 5</p>
+          <h2>用藥/照護提醒</h2>
+        </div>
+        <div class="reminder-list" id="reminderList"></div>
+      </div>
+    </section>
+
+    <section class="disclaimer">
+      <strong>展示聲明</strong>
+      <p>本頁為概念 demo，分流與照護文字僅用於產品展示；若孩子出現呼吸困難、意識改變、抽搐、嚴重脫水或其他急症，請立即撥打當地緊急電話或前往急診。</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
