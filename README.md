@@ -1,5 +1,21 @@
 # 24小時全方位親子即時醫療專業線上諮詢 Demo
 
+## 快速看懂
+
+![startup-parent-medical-consult 功能截圖](docs/preview.png)
+
+- 線上 Demo：https://atlasforcn.github.io/startup-parent-medical-consult/
+- 這個原型在做什麼：把親子即時醫療諮詢做成夜間兒科分流與線上諮詢平台。
+- 特色定位：特色是用症狀、年齡、警示徵象形成分流，再接上候診、提醒與轉診建議。
+- 操作流程：輸入孩子症狀、年齡與風險因子 → 取得護理師/醫師候診與分流建議 → 產生照護提醒，必要時提示轉診或急診
+
+<details>
+<summary>展開完整功能流程截圖</summary>
+
+![startup-parent-medical-consult 完整功能流程截圖](docs/flow.png)
+
+</details>
+
 這是一個以「夜間兒科急診前的家庭照護與即時線上諮詢」為情境的原生 HTML/CSS/JavaScript 互動 demo。使用者可輸入孩子症狀與風險因子，系統會模擬分流、安排 24 小時醫師或護理師候診、產生線上諮詢事件、建立用藥與照護提醒，並在高風險情境下提出升級或轉診建議。
 
 ## 比賽來源
